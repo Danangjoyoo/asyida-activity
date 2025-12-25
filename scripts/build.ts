@@ -297,6 +297,7 @@ function renderIndexHtml(trips: TripData[]): string {
     <script type="module" src="./assets/app.js"></script>
   </body>
 </html>`;
+}
 
 function renderTripHtml(trip: TripData): string {
   const fallbackList =
