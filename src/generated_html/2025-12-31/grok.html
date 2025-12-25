@@ -2,344 +2,615 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>5-Day JR Seishun 18 Kippu Itinerary from Tokyo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5-Day JR Seishun 18 Kippu Itinerary</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            /* Color Palette */
+            --primary: #4a69bd; /* Deep Blue */
+            --secondary: #6a89cc; /* Lighter Blue */
+            --accent: #f6b93b; /* Star/Gold */
+            --danger: #e55039; /* Alert/Important */
+            --success: #78e08f; /* Green */
+            --dark: #1e272e;
+            --light: #f1f2f6;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #dfe6e9;
+            color: var(--dark);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Container to center content */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 10px;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .intro {
+            background-color: #eaf2f8;
+            padding: 20px;
+            border-left: 5px solid var(--primary);
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+
+        /* Navigation Buttons */
+        nav {
+            background: var(--dark);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        nav h2 {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        nav li {
+            display: inline-block;
+        }
+
+        nav a {
+            display: block;
+            background-color: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        nav a:hover {
+            background-color: var(--accent);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        /* Details & Summary (The Accordion) */
+        details {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background: var(--white);
+            border: 1px solid #ddd;
+        }
+
+        summary {
+            cursor: pointer;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 15px 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none; /* Hide default triangle */
+            position: relative;
+            transition: background 0.3s;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary:hover {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+        }
+
+        summary h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            display: inline-block;
+        }
+
+        summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        details[open] summary::after {
+            content: '-';
+        }
+
+        /* Table Styling */
         table {
             width: 100%;
             border-collapse: collapse;
+            margin: 0;
+            font-size: 0.95rem;
         }
+
         th, td {
-            border: 1px solid black;
-            padding: 8px;
+            padding: 12px 15px;
             text-align: left;
+            border-bottom: 1px solid #ddd;
         }
+
         th {
-            background-color: #f2f2f2;
+            background-color: var(--dark);
+            color: var(--white);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tr:hover {
+            background-color: #ffeaa7; /* Highlight on hover */
+            transition: background-color 0.2s;
+        }
+
+        /* Links in tables */
+        td a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px dashed var(--primary);
+        }
+
+        td a:hover {
+            color: var(--danger);
+            border-bottom: 1px solid var(--danger);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav a {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            tr {
+                margin-bottom: 15px;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+
+            td {
+                border: none;
+                border-bottom: 1px solid #eee;
+                position: relative;
+                padding-left: 50%;
+            }
+
+            td:before {
+                position: absolute;
+                top: 12px;
+                left: 15px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                font-weight: bold;
+                content: attr(data-label);
+                color: var(--primary);
+            }
         }
     </style>
 </head>
 <body>
-    <h1>5-Day "Star-Shaped" Rail Itinerary from Tokyo Using JR Seishun 18 Kippu</h1>
-    <p>This itinerary maximizes distance each day using only JR local and rapid trains, ensuring same-day return to Nippori Station. Dates are December 31, 2025, to January 4, 2026. Accounts for potential New Year congestion with conservative timings and safety buffers. All JR segments covered by the pass. Prayer scheduled between 11:00-15:00 at acceptable locations. Meals are halal-safe seafood or vegetarian.</p>
 
-    <h2>Day 1: December 31, 2025 - Hamamatsu (South, Approx. 210 km)</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Hour</th>
-                <th>Activity</th>
-                <th>Details</th>
-                <th>Cost</th>
-                <th>Food</th>
-                <th>Links</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>06:00 - 10:00</td>
-                <td>Transit</td>
-                <td>Depart Nippori on JR Yamanote Line to Tokyo Station (Rapid), transfer to JR Tokaido Line Rapid to Hamamatsu Station. 1 transfer at Tokyo Station.</td>
-                <td>Pass</td>
-                <td></td>
-                <td><a href="https://www.google.com/maps/dir/Nippori+Station/Hamamatsu+Station">Google Maps Route</a> | <a href="https://www.jreast.co.jp/e/">JR East Official</a></td>
-            </tr>
-            <tr>
-                <td>10:00 - 12:00</td>
-                <td>Sightseeing</td>
-                <td>Visit Hamamatsu Castle and gardens.</td>
-                <td>Pass (walk or local bus if needed, but walkable)</td>
-                <td></td>
-                <td><a href="https://www.japan-guide.com/e/e7450.html">Hamamatsu Castle Info</a></td>
-            </tr>
-            <tr>
-                <td>12:00 - 12:15</td>
-                <td>Prayer</td>
-                <td>Jamak prayer at Mohammadi Masjid (mosque).</td>
-                <td>0</td>
-                <td></td>
-                <td><a href="https://www.hamamatsumosque.com/">Mohammadi Masjid</a><grok-card data-id="522a50" data-type="citation_card" ></grok-card></td>
-            </tr>
-            <tr>
-                <td>12:15 - 13:15</td>
-                <td>Meal</td>
-                <td></td>
-                <td>~1000 yen</td>
-                <td>Seafood / Vegetarian (Halal-safe) at Halal Food Hamid or nearby seafood restaurant.</td>
-                <td><a href="https://www.yelp.com/search?cflt=halal&find_loc=Hamamatsu">Halal Restaurants</a><grok-card data-id="a9aeef" data-type="citation_card" ></grok-card></td>
-            </tr>
-            <tr>
-                <td>13:15 - 17:00</td>
-                <td>Sightseeing</td>
-                <td>Explore Lake Hamana area (bus from Hamamatsu Station, justified as JR not reaching, round trip).</td>
-                <td>Bus: 2000 yen</td>
-                <td></td>
-                <td><a href="https://www.japan-guide.com/e/e7451.html">Lake Hamana Info</a></td>
-            </tr>
-            <tr>
-                <td>17:00 - 21:00</td>
-                <td>Transit</td>
-                <td>Depart Hamamatsu on JR Tokaido Line Rapid to Tokyo Station, transfer to JR Yamanote Line to Nippori. 1 transfer at Tokyo Station. Arrival by 21:00 with buffer.</td>
-                <td>Pass</td>
-                <td></td>
-                <td><a href="https://www.google.com/maps/dir/Hamamatsu+Station/Nippori+Station">Google Maps Route</a> | <a href="https://www.jreast.co.jp/e/">JR East Official</a></td>
-            </tr>
-        </tbody>
-    </table>
+<div class="container">
+    <div style="text-align: center;">
+        <h1>5-Day "Star-Shaped" Rail Itinerary</h1>
+        <p style="color: #666; font-weight: 600;">Starting from Tokyo | JR Seishun 18 Kippu</p>
+    </div>
 
-    <h2>Day 2: January 1, 2026 - Matsumoto (West, Approx. 170 km)</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Hour</th>
-                <th>Activity</th>
-                <th>Details</th>
-                <th>Cost</th>
-                <th>Food</th>
-                <th>Links</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>06:00 - 10:00</td>
-                <td>Transit</td>
-                <td>Depart Nippori on JR Yamanote Line to Shinjuku Station, transfer to JR Chuo Line Rapid to Matsumoto Station. 1 transfer at Shinjuku.</td>
-                <td>Pass</td>
-                <td></td>
-                <td><a href="https://www.google.com/maps/dir/Nippori+Station/Matsumoto+Station">Google Maps Route</a> | <a href="https://www.jreast.co.jp/e/">JR East Official</a></td>
-            </tr>
-            <tr>
-                <td>10:00 - 12:00</td>
-                <td>Sightseeing</td>
-                <td>Visit Matsumoto Castle.</td>
-                <td>700 yen entrance</td>
-                <td></td>
-                <td><a href="https://www.japan-guide.com/e/e6000.html">Matsumoto Castle Info</a></td>
-            </tr>
-            <tr>
-                <td>12:00 - 12:15</td>
-                <td>Prayer</td>
-                <td>Jamak prayer at Matsumoto Mosque.</td>
-                <td>0</td>
-                <td></td>
-                <td><a href="https://www.masjid-finder.jp/pray/61">Matsumoto Mosque</a></td>
-            </tr>
-            <tr>
-                <td>12:15 - 13:15</td>
-                <td>Meal</td>
-                <td></td>
-                <td>~1000 yen</td>
-                <td>Vegetarian (Halal-safe) at local vegan cafe.</td>
-                <td><a href="https://www.happycow.net/searchmap?location=Matsumoto,Japan&vegan=true">Vegan Options</a></td>
-            </tr>
-            <tr>
-                <td>13:15 - 17:00</td>
-                <td>Sightseeing</td>
-                <td>Explore Nawate Street and Nakamachi area.</td>
-                <td>0</td>
-                <td></td>
-                <td><a href="https://www.japan-guide.com/e/e6053.html">Matsumoto Info</a></td>
-            </tr>
-            <tr>
-                <td>17:00 - 21:00</td>
-                <td>Transit</td>
-                <td>Depart Matsumoto on JR Chuo Line Rapid to Shinjuku Station, transfer to JR Yamanote Line to Nippori. 1 transfer at Shinjuku. Arrival by 21:00 with buffer.</td>
-                <td>Pass</td>
-                <td></td>
-                <td><a href="https://www.google.com/maps/dir/Matsumoto+Station/Nippori+Station">Google Maps Route</a> | <a href="https://www.jreast.co.jp/e/">JR East Official</a></td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="intro">
+        <p><strong>Overview:</strong> This itinerary maximizes distance each day using only JR local and rapid trains, ensuring same-day return to Nippori Station. <br><br>
+        <strong>Dates:</strong> Dec 31, 2025 – Jan 4, 2026.<br>
+        <strong>Safety:</strong> Accounts for New Year congestion. Meals are halal-safe/vegetarian. Prayer times included.</p>
+    </div>
 
-    <h2>Day 3: January 2, 2026 - Fukushima (North, Approx. 230 km)</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Hour</th>
-                <th>Activity</th>
-                <th>Details</th>
-                <th>Cost</th>
-                <th>Food</th>
-                <th>Links</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>06:00 - 10:00</td>
-                <td>Transit</td>
-                <td>Depart Nippori on JR Yamanote Line to Ueno Station, transfer to JR Tohoku Main Line Rapid to Fukushima Station. 1 transfer at Ueno.</td>
-                <td>Pass</td>
-                <td></td>
-                <td><a href="https://www.google.com/maps/dir/Nippori+Station/Fukushima+Station">Google Maps Route</a> | <a href="https://www.jreast.co.jp/e/">JR East Official</a></td>
-            </tr>
-            <tr>
-                <td>10:00 - 12:00</td>
-                <td>Sightseeing</td>
-                <td>Visit Hanamiyama Park or Tsuruga Castle (seasonal).</td>
-                <td>0</td>
-                <td></td>
-                <td><a href="https://www.japan-guide.com/e/e7725.html">Fukushima Info</a></td>
-            </tr>
-            <tr>
-                <td>12:00 - 12:15</td>
-                <td>Prayer</td>
-                <td>Jamak prayer at Fukushima Mosque.</td>
-                <td>0</td>
-                <td></td>
-                <td><a href="https://www.masjid-finder.jp/pray/62">Fukushima Mosque</a></td>
-            </tr>
-            <tr>
-                <td>12:15 - 13:15</td>
-                <td>Meal</td>
-                <td></td>
-                <td>~1000 yen</td>
-                <td>Seafood (Halal-safe) at local seafood spot.</td>
-                <td><a href="https://www.halalgourmet.jp/search?prefecture=7">Halal Options</a></td>
-            </tr>
-            <tr>
-                <td>13:15 - 17:00</td>
-                <td>Sightseeing</td>
-                <td>Explore Azuma Mountains (bus if needed, justified as JR not direct, round trip).</td>
-                <td>Bus: 2000 yen</td>
-                <td></td>
-                <td><a href="https://www.japan-guide.com/e/e7726.html">Azuma Info</a></td>
-            </tr>
-            <tr>
-                <td>17:00 - 21:00</td>
-                <td>Transit</td>
-                <td>Depart Fukushima on JR Tohoku Main Line Rapid to Ueno Station, transfer to JR Yamanote Line to Nippori. 1 transfer at Ueno. Arrival by 21:00 with buffer.</td>
-                <td>Pass</td>
-                <td></td>
-                <td><a href="https://www.google.com/maps/dir/Fukushima+Station/Nippori+Station">Google Maps Route</a> | <a href="https://www.jreast.co.jp/e/">JR East Official</a></td>
-            </tr>
-        </tbody>
-    </table>
+    <nav>
+        <h2>Destinations</h2>
+        <ul>
+            <li><a href="#day1">Day 1: Hamamatsu</a></li>
+            <li><a href="#day2">Day 2: Matsumoto</a></li>
+            <li><a href="#day3">Day 3: Fukushima</a></li>
+            <li><a href="#day4">Day 4: Iwaki</a></li>
+            <li><a href="#day5">Day 5: Echigo-Yuzawa</a></li>
+        </ul>
+    </nav>
 
-    <h2>Day 4: January 3, 2026 - Iwaki (East, Approx. 170 km)</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Hour</th>
-                <th>Activity</th>
-                <th>Details</th>
-                <th>Cost</th>
-                <th>Food</th>
-                <th>Links</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>06:00 - 09:00</td>
-                <td>Transit</td>
-                <td>Depart Nippori on JR Joban Line Rapid to Iwaki Station. No transfer.</td>
-                <td>Pass</td>
-                <td></td>
-                <td><a href="https://www.google.com/maps/dir/Nippori+Station/Iwaki+Station">Google Maps Route</a> | <a href="https://www.jreast.co.jp/e/">JR East Official</a></td>
-            </tr>
-            <tr>
-                <td>09:00 - 12:00</td>
-                <td>Sightseeing</td>
-                <td>Visit Aquamarine Fukushima (ocean museum).</td>
-                <td>1800 yen entrance</td>
-                <td></td>
-                <td><a href="https://www.japan-guide.com/e/e7730.html">Aquamarine Info</a></td>
-            </tr>
-            <tr>
-                <td>12:00 - 12:15</td>
-                <td>Prayer</td>
-                <td>Jamak prayer at Iwaki Mosque or station fitting room.</td>
-                <td>0</td>
-                <td></td>
-                <td><a href="https://www.masjid-finder.jp/pray/63">Iwaki Prayer Info</a></td>
-            </tr>
-            <tr>
-                <td>12:15 - 13:15</td>
-                <td>Meal</td>
-                <td></td>
-                <td>~1000 yen</td>
-                <td>Seafood (Halal-safe) at local seafood market.</td>
-                <td><a href="https://www.halalgourmet.jp/search?prefecture=7">Halal Options</a></td>
-            </tr>
-            <tr>
-                <td>13:15 - 17:00</td>
-                <td>Sightseeing</td>
-                <td>Explore Spa Resort Hawaiians (bus from Iwaki, justified as JR not direct, round trip).</td>
-                <td>Bus: 1000 yen, Entrance: 3500 yen</td>
-                <td></td>
-                <td><a href="https://www.japan-guide.com/e/e7731.html">Spa Resort Info</a></td>
-            </tr>
-            <tr>
-                <td>17:00 - 20:00</td>
-                <td>Transit</td>
-                <td>Depart Iwaki on JR Joban Line Rapid to Nippori. No transfer. Arrival by 20:00 with buffer.</td>
-                <td>Pass</td>
-                <td></td>
-                <td><a href="https://www.google.com/maps/dir/Iwaki+Station/Nippori+Station">Google Maps Route</a> | <a href="https://www.jreast.co.jp/e/">JR East Official</a></td>
-            </tr>
-        </tbody>
-    </table>
+    <details id="day1">
+        <summary><h2>Day 1: Hamamatsu (South)</h2></summary>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Hour</th>
+                    <th>Activity</th>
+                    <th>Details</th>
+                    <th>Cost</th>
+                    <th>Food</th>
+                    <th>Links</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Hour">06:10 - 09:30</td>
+                    <td data-label="Activity">Transit</td>
+                    <td data-label="Details">Nippori > Tokyo > Hamamatsu (Tokaido Line).</td>
+                    <td data-label="Cost">Pass</td>
+                    <td data-label="Food">-</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/place/Hamamatsu+Station">Map</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Hour">09:30 - 12:00</td>
+                    <td data-label="Activity">Sightseeing</td>
+                    <td data-label="Details">Visit Hamamatsu Castle and gardens.</td>
+                    <td data-label="Cost">Free (Walk)</td>
+                    <td data-label="Food">-</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/place/Hamamatsu+Castle">Map</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Hour">12:00 - 12:15</td>
+                    <td data-label="Activity">Prayer</td>
+                    <td data-label="Details">Jamak at Mohammadi Masjid.</td>
+                    <td data-label="Cost">0</td>
+                    <td data-label="Food">-</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/place/Mohammadi+Masjid">Map</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Hour">12:15 - 13:15</td>
+                    <td data-label="Activity">Meal</td>
+                    <td data-label="Details">Lunch at Garuda Restaurant.</td>
+                    <td data-label="Cost">~1000 yen</td>
+                    <td data-label="Food">Halal Safe</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/place/Garuda+Restaurant+Hamamatsu">Map</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Hour">13:15 - 16:30</td>
+                    <td data-label="Activity">Sightseeing</td>
+                    <td data-label="Details">Explore Lake Hamana area.</td>
+                    <td data-label="Cost">Bus: ~1000 yen</td>
+                    <td data-label="Food">-</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/place/Lake+Hamana">Map</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Hour">17:00 - 20:20</td>
+                    <td data-label="Activity">Transit</td>
+                    <td data-label="Details">Hamamatsu > Tokyo > Nippori.</td>
+                    <td data-label="Cost">Pass</td>
+                    <td data-label="Food">-</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/place/Nippori+Station">Map</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </details>
 
-    <h2>Day 5: January 4, 2026 - Echigo-Yuzawa (Northwest, Approx. 150 km)</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Hour</th>
-                <th>Activity</th>
-                <th>Details</th>
-                <th>Cost</th>
-                <th>Food</th>
-                <th>Links</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>06:00 - 10:00</td>
-                <td>Transit</td>
-                <td>Depart Nippori on JR Yamanote Line to Ueno Station, transfer to JR Takasaki Line Rapid to Echigo-Yuzawa Station. 1 transfer at Ueno.</td>
-                <td>Pass</td>
-                <td></td>
-                <td><a href="https://www.google.com/maps/dir/Nippori+Station/Echigo-Yuzawa+Station">Google Maps Route</a> | <a href="https://www.jreast.co.jp/e/">JR East Official</a><grok-card data-id="62de80" data-type="citation_card" ></grok-card></td>
-            </tr>
-            <tr>
-                <td>10:00 - 12:00</td>
-                <td>Sightseeing</td>
-                <td>Visit Yuzawa Onsen or snow areas (winter season).</td>
-                <td>0</td>
-                <td></td>
-                <td><a href="https://www.japan-guide.com/e/e6485.html">Echigo-Yuzawa Info</a></td>
-            </tr>
-            <tr>
-                <td>12:00 - 12:15</td>
-                <td>Prayer</td>
-                <td>Jamak prayer at station prayer room or fitting room.</td>
-                <td>0</td>
-                <td></td>
-                <td><a href="https://www.japan.travel/en/spot/1765/">Prayer Room Info</a></td>
-            </tr>
-            <tr>
-                <td>12:15 - 13:15</td>
-                <td>Meal</td>
-                <td></td>
-                <td>~1000 yen</td>
-                <td>Vegetarian (Halal-safe) at local cafe.</td>
-                <td><a href="https://www.happycow.net/searchmap?location=Echigo-Yuzawa,Japan&vegan=true">Vegan Options</a></td>
-            </tr>
-            <tr>
-                <td>13:15 - 17:00</td>
-                <td>Sightseeing</td>
-                <td>Explore Ponshukan Sake Museum.</td>
-                <td>500 yen entrance (avoid alcohol samples)</td>
-                <td></td>
-                <td><a href="https://www.japan-guide.com/e/e6485.html">Ponshukan Info</a></td>
-            </tr>
-            <tr>
-                <td>17:00 - 21:00</td>
-                <td>Transit</td>
-                <td>Depart Echigo-Yuzawa on JR Takasaki Line Rapid to Ueno Station, transfer to JR Yamanote Line to Nippori. 1 transfer at Ueno. Arrival by 21:00 with buffer.</td>
-                <td>Pass</td>
-                <td></td>
-                <td><a href="https://www.google.com/maps/dir/Echigo-Yuzawa+Station/Nippori+Station">Google Maps Route</a> | <a href="https://www.jreast.co.jp/e/">JR East Official</a></td>
-            </tr>
-        </tbody>
-    </table>
+    <details id="day2">
+        <summary><h2>Day 2: Matsumoto (West)</h2></summary>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Hour</th>
+                    <th>Activity</th>
+                    <th>Details</th>
+                    <th>Cost</th>
+                    <th>Food</th>
+                    <th>Links</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Hour">06:00 - 09:30</td>
+                    <td data-label="Activity">Transit</td>
+                    <td data-label="Details">Nippori > Shinjuku > Matsumoto.</td>
+                    <td data-label="Cost">Pass</td>
+                    <td data-label="Food">-</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/place/Matsumoto+Station">Map</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Hour">09:30 - 12:00</td>
+                    <td data-label="Activity">Sightseeing</td>
+                    <td data-label="Details">Visit Matsumoto Castle.</td>
+                    <td data-label="Cost">700 yen</td>
+                    <td data-label="Food">-</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/place/Matsumoto+Castle">Map</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Hour">12:00 - 12:15</td>
+                    <td data-label="Activity">Prayer</td>
+                    <td data-label="Details">Jamak at Matsumoto Mosque.</td>
+                    <td data-label="Cost">0</td>
+                    <td data-label="Food">-</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/place/Matsumoto+Mosque">Map</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Hour">12:15 - 13:15</td>
+                    <td data-label="Activity">Meal</td>
+                    <td data-label="Details">Vegan Cafe Matsumoto.</td>
+                    <td data-label="Cost">~1000 yen</td>
+                    <td data-label="Food">Vegetarian</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/search/vegan+cafe+Matsumoto">Map</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Hour">13:15 - 16:30</td>
+                    <td data-label="Activity">Sightseeing</td>
+                    <td data-label="Details">Nawate Street & Nakamachi.</td>
+                    <td data-label="Cost">0</td>
+                    <td data-label="Food">-</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/place/Nawate+Street">Map</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Hour">17:00 - 20:30</td>
+                    <td data-label="Activity">Transit</td>
+                    <td data-label="Details">Matsumoto > Shinjuku > Nippori.</td>
+                    <td data-label="Cost">Pass</td>
+                    <td data-label="Food">-</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/place/Nippori+Station">Map</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </details>
+
+    <details id="day3">
+        <summary><h2>Day 3: Fukushima (North)</h2></summary>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Hour</th>
+                    <th>Activity</th>
+                    <th>Details</th>
+                    <th>Cost</th>
+                    <th>Food</th>
+                    <th>Links</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Hour">06:00 - 10:00</td>
+                    <td data-label="Activity">Transit</td>
+                    <td data-label="Details">Nippori > Ueno > Fukushima.</td>
+                    <td data-label="Cost">Pass</td>
+                    <td data-label="Food">-</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/place/Fukushima+Station">Map</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Hour">10:00 - 12:00</td>
+                    <td data-label="Activity">Sightseeing</td>
+                    <td data-label="Details">Hanamiyama Park or Castle.</td>
+                    <td data-label="Cost">0</td>
+                    <td data-label="Food">-</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/place/Hanamiyama+Park">Map</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Hour">12:00 - 12:15</td>
+                    <td data-label="Activity">Prayer</td>
+                    <td data-label="Details">Station prayer/fitting room.</td>
+                    <td data-label="Cost">0</td>
+                    <td data-label="Food">-</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/place/Fukushima+Station">Map</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Hour">12:15 - 13:15</td>
+                    <td data-label="Activity">Meal</td>
+                    <td data-label="Details">Local Seafood Restaurant.</td>
+                    <td data-label="Cost">~1000 yen</td>
+                    <td data-label="Food">Seafood</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/search/seafood+restaurant+Fukushima">Map</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Hour">13:15 - 16:30</td>
+                    <td data-label="Activity">Sightseeing</td>
+                    <td data-label="Details">Azuma Mountains (Bus trip).</td>
+                    <td data-label="Cost">Bus: ~2000 yen</td>
+                    <td data-label="Food">-</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/place/Azuma+Mountains">Map</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Hour">17:00 - 21:00</td>
+                    <td data-label="Activity">Transit</td>
+                    <td data-label="Details">Fukushima > Ueno > Nippori.</td>
+                    <td data-label="Cost">Pass</td>
+                    <td data-label="Food">-</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/place/Nippori+Station">Map</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </details>
+
+    <details id="day4">
+        <summary><h2>Day 4: Iwaki (East)</h2></summary>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Hour</th>
+                    <th>Activity</th>
+                    <th>Details</th>
+                    <th>Cost</th>
+                    <th>Food</th>
+                    <th>Links</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Hour">06:00 - 09:25</td>
+                    <td data-label="Activity">Transit</td>
+                    <td data-label="Details">Nippori > Iwaki (Joban Line).</td>
+                    <td data-label="Cost">Pass</td>
+                    <td data-label="Food">-</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/place/Iwaki+Station">Map</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Hour">09:25 - 12:00</td>
+                    <td data-label="Activity">Sightseeing</td>
+                    <td data-label="Details">Aquamarine Fukushima.</td>
+                    <td data-label="Cost">1800 yen</td>
+                    <td data-label="Food">-</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/place/Aquamarine+Fukushima">Map</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Hour">12:00 - 12:15</td>
+                    <td data-label="Activity">Prayer</td>
+                    <td data-label="Details">Jamak at Iwaki Masjid.</td>
+                    <td data-label="Cost">0</td>
+                    <td data-label="Food">-</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/place/Iwaki+Masjid">Map</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Hour">12:15 - 13:15</td>
+                    <td data-label="Activity">Meal</td>
+                    <td data-label="Details">Seafood Market Iwaki.</td>
+                    <td data-label="Cost">~1000 yen</td>
+                    <td data-label="Food">Seafood</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/search/seafood+market+Iwaki">Map</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Hour">13:15 - 16:30</td>
+                    <td data-label="Activity">Sightseeing</td>
+                    <td data-label="Details">Spa Resort Hawaiians.</td>
+                    <td data-label="Cost">3500+ yen</td>
+                    <td data-label="Food">-</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/place/Spa+Resort+Hawaiians">Map</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Hour">17:00 - 20:25</td>
+                    <td data-label="Activity">Transit</td>
+                    <td data-label="Details">Iwaki > Nippori.</td>
+                    <td data-label="Cost">Pass</td>
+                    <td data-label="Food">-</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/place/Nippori+Station">Map</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </details>
+
+    <details id="day5">
+        <summary><h2>Day 5: Echigo-Yuzawa (Northwest)</h2></summary>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Hour</th>
+                    <th>Activity</th>
+                    <th>Details</th>
+                    <th>Cost</th>
+                    <th>Food</th>
+                    <th>Links</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Hour">06:00 - 09:30</td>
+                    <td data-label="Activity">Transit</td>
+                    <td data-label="Details">Nippori > Takasaki > Echigo-Yuzawa.</td>
+                    <td data-label="Cost">Pass</td>
+                    <td data-label="Food">-</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/place/Echigo-Yuzawa+Station">Map</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Hour">09:30 - 12:00</td>
+                    <td data-label="Activity">Sightseeing</td>
+                    <td data-label="Details">Yuzawa Onsen / Snow play.</td>
+                    <td data-label="Cost">0</td>
+                    <td data-label="Food">-</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/place/Yuzawa+Onsen">Map</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Hour">12:00 - 12:15</td>
+                    <td data-label="Activity">Prayer</td>
+                    <td data-label="Details">Station prayer/fitting room.</td>
+                    <td data-label="Cost">0</td>
+                    <td data-label="Food">-</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/place/Echigo-Yuzawa+Station">Map</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Hour">12:15 - 13:15</td>
+                    <td data-label="Activity">Meal</td>
+                    <td data-label="Details">Vegetarian options near station.</td>
+                    <td data-label="Cost">~1000 yen</td>
+                    <td data-label="Food">Vegetarian</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/search/vegetarian+restaurant+Echigo-Yuzawa">Map</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Hour">13:15 - 16:30</td>
+                    <td data-label="Activity">Sightseeing</td>
+                    <td data-label="Details">Ponshukan Sake Museum.</td>
+                    <td data-label="Cost">500 yen</td>
+                    <td data-label="Food">-</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/place/Ponshukan+Sake+Museum">Map</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Hour">17:00 - 20:30</td>
+                    <td data-label="Activity">Transit</td>
+                    <td data-label="Details">Echigo-Yuzawa > Takasaki > Nippori.</td>
+                    <td data-label="Cost">Pass</td>
+                    <td data-label="Food">-</td>
+                    <td data-label="Links"><a href="https://www.google.com/maps/place/Nippori+Station">Map</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </details>
+</div>
+
 </body>
 </html>

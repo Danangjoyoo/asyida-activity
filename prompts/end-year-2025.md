@@ -149,10 +149,12 @@ TABLE COLUMNS (REQUIRED)
 - Food
   - Restaurant name OR
   - “Seafood / Vegetarian (Halal-safe)”
-- Links
-  - Google Maps OR
+- Location Links
+  - Google Maps of current place checkpoint, so I could click to check the checkpoint (mandatory)
+- Evidence Links
   - Official JR / attraction website
   - Evidence for train routing or location
+  - multiple links are highly recommended to make our trip easier
 
 ====================================
 CRITICAL GUIDELINES (NON-NEGOTIABLE)

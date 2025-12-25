@@ -1,22 +1,75 @@
 ========== FEED PROMPT TO BE IGNORED BY AGENT ==========
 # ROLE
-SENIOR FRONTEND ENGINEER
+You are a **Senior Frontend Engineer** with strong experience in:
+- Static site hosting and deployment
+- Modern frontend build tools (Vite, Next.js, or static site generators)
+- Deploying websites to **Vercel**
+- Creating interactive web experiences with vanilla JavaScript or React
 
-# CONTEXT
-- I want to build a website for me to trip
-- this website is serving static page on src/generated_html
-- each folder on src/generated_html is representing a single trip
-- the title of the trip is the folder name
-- the content of the trip is the index.html file in the folder
-- the index.html contains a list of suggested activities for the trip generated from different AI agent
-    - claude
-    - gpt
-    - gemini
-    - grok
+# PROJECT CONTEXT
+- I am building a personal **trip planning website**.
+- The website serves **static HTML files** located under `src/generated_html`.
+- Each **subfolder** inside `src/generated_html` represents a **single trip** (e.g., `2025-12-31`).
+- Trip folder structure:
+  - `index.html` - Main trip page with overview
+  - `claude.html` - Activity suggestions from Claude
+  - `gpt.html` - Activity suggestions from ChatGPT
+  - `gemini.html` - Activity suggestions from Gemini
+  - `grok.html` - Activity suggestions from Grok
+- The **trip title** is the folder name (date-based, like `2025-12-31`).
+
+# GOAL
+Create an **interactive trip website** that:
+1. **Orchestrates** all trip HTML files into a cohesive experience
+2. Allows **switching** between different AI-generated activity suggestions
+3. **Serves on Vercel for free** with optimal performance
+4. Provides a **modern, responsive UI** for browsing trips and activities
 
 # TASK
-- generate the script to serve my website
-- I will serve it on vercel for free
+1. **Create a main index.html** that:
+   - Lists all available trips (auto-discovered from `src/generated_html` folders)
+   - Provides navigation to switch between trips
+   - Shows an overview of each trip
+
+2. **Enhance trip pages** to:
+   - Add interactive tabs/buttons to switch between AI agent suggestions
+   - Enable seamless navigation between `claude.html`, `gpt.html`, `gemini.html`, `grok.html`
+   - Maintain the existing content while adding the interactive layer
+
+3. **Setup Vercel deployment**:
+   - Configure for static site hosting
+   - Ensure proper routing for all trip pages
+   - Optimize for performance and SEO
+
+# REQUIREMENTS
+- **Modern UI/UX**: Use Tailwind CSS for styling, create a clean and responsive design
+- **Interactive Navigation**: Smooth transitions between different AI suggestions without page reloads
+- **Auto-discovery**: Automatically detect and list all trip folders without hardcoding
+- **Mobile-responsive**: Works well on both desktop and mobile devices
+- **Fast loading**: Optimize for quick page loads and smooth interactions
+- **Vercel-ready**: Complete configuration for hassle-free deployment
+
+# DELIVERABLES
+1. **Main index.html** - Trip listing and navigation hub
+2. **Enhanced trip pages** - Interactive AI suggestion switching
+3. **Vercel configuration** - `vercel.json` and any necessary build setup
+4. **Shared assets** - CSS, JavaScript for interactive features
+5. **Deployment guide** - Step-by-step Vercel deployment instructions
+
+# TECHNICAL CONSTRAINTS
+- Use **vanilla JavaScript** or **React** (choose based on complexity)
+- **Tailwind CSS** for styling (via CDN or build process)
+- **Static-first approach** - no server-side requirements
+- **Progressive enhancement** - content should be accessible without JavaScript
+- **Cross-browser compatibility** - modern browsers with graceful degradation
+
+# EXAMPLE INTERACTION FLOW
+1. User lands on main page → sees list of all trips
+2. User clicks a trip (e.g., "2025-12-31") → loads trip overview
+3. User sees tabs/buttons for "Claude", "GPT", "Gemini", "Grok"
+4. User clicks "Claude" → loads claude.html content smoothly
+5. User can switch between AI suggestions without page reload
+6. User can navigate back to trip list or other trips
 
 
 ========== REFINED PROMPT TO READ BY AGENT ==========
