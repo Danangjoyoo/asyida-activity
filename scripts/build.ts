@@ -203,22 +203,11 @@ function renderIndexHtml(trips: TripData[]): string {
   const tripLinks = manifest
     .map(
       (trip) => `
-            <li class="rounded-xl border border-white/10 bg-white/5 p-4 transition hover:border-emerald-400/60">
-              <div class="flex flex-col gap-1">
-                <span class="text-xs font-semibold uppercase tracking-wide text-emerald-300">${escapeHtml(
-                  trip.title,
-                )}</span>
-                <span class="text-base text-slate-300">${escapeHtml(trip.slug)}</span>
-              </div>
-              <div class="mt-3 flex flex-wrap gap-2">
-                <a class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/10 px-3 py-1.5 text-sm font-medium text-white transition hover:border-emerald-400/60 hover:text-emerald-200" href="./${encodeURI(
-                  trip.slug,
-                )}/">Open trip hub</a>
-                <a class="inline-flex items-center gap-2 rounded-lg border border-white/10 px-3 py-1.5 text-sm font-medium text-slate-200 transition hover:border-emerald-400/60 hover:text-emerald-200" href="./${encodeURI(
-                  trip.slug,
-                )}/${OVERVIEW_FILENAME}">Static overview</a>
-              </div>
-            </li>`
+            <div class="trip-card">
+              <h3>${escapeHtml(trip.title)}</h3>
+              <p>${escapeHtml(trip.slug)}</p>
+              <a href="./${encodeURI(trip.slug)}/" class="trip-link">View Trip</a>
+            </div>`
     )
     .join("\n");
 
@@ -229,95 +218,85 @@ function renderIndexHtml(trips: TripData[]): string {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Trip Explorer</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.15/dist/tailwind.min.css" />
+    <title>Asyida Trips</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-      body { background: radial-gradient(circle at top, #0f172a 0%, #020617 45%, #000 100%); color: #f8fafc; }
+      :root {
+        --primary-gradient: linear-gradient(135deg, #e8f4f8 0%, #d1e7dd 100%);
+        --secondary-gradient: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        --accent-gradient: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        --success-gradient: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+        --warning-gradient: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+        --dark-bg: #343a40;
+        --card-bg: rgba(255, 255, 255, 0.98);
+        --text-primary: #212529;
+        --text-secondary: #6c757d;
+        --border-radius: 12px;
+        --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.12);
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%);
+        background-attachment: fixed;
+        min-height: 100vh;
+        color: var(--text-primary);
+      }
+
+      .App::before {
+        content: '';
+        position: fixed; inset: 0;
+        background:
+          radial-gradient(circle at 20% 80%, rgba(209,231,221,0.3) 0%, transparent 50%),
+          radial-gradient(circle at 80% 20%, rgba(232,244,248,0.3) 0%, transparent 50%),
+          radial-gradient(circle at 40% 40%, rgba(248,249,250,0.3) 0%, transparent 50%);
+        pointer-events: none; z-index: 1;
+      }
+
+      .trip-list { position: relative; z-index: 2; padding: 3rem 2rem; max-width: 1200px; margin: 0 auto; }
+      .trip-list h1 {
+        font-size: 3rem; font-weight: 800; text-align: center; margin-bottom: 1rem;
+        background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        animation: fadeInUp 0.6s ease-out;
+      }
+      .trip-list h1::after { content: ''; display: block; width: 100px; height: 4px; background: var(--accent-gradient); margin: 1rem auto; border-radius: 2px; }
+
+      .trips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; margin-top: 2rem; animation: fadeInUp 0.6s ease-out 0.1s both; }
+      .trip-card { background: var(--card-bg); border-radius: var(--border-radius); padding: 2rem; box-shadow: var(--shadow); transition: all 0.2s ease; position: relative; overflow: hidden; }
+      .trip-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--primary-gradient); transform: scaleX(0); transform-origin: left; transition: transform 0.25s ease; }
+      .trip-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+      .trip-card:hover::before { transform: scaleX(1); }
+      .trip-card h3 { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; }
+      .trip-card p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.25rem; opacity: 0.9; }
+      .trip-link { display: inline-block; background: var(--accent-gradient); color: #fff; padding: 0.7rem 1.25rem; border-radius: 9999px; text-decoration: none; font-weight: 600; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+      .trip-link:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(73, 80, 87, 0.25); }
+
+      @keyframes fadeInUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
       ::-webkit-scrollbar { width: 10px; }
-      ::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.4); border-radius: 9999px; }
+      ::-webkit-scrollbar-thumb { background: rgba(108, 117, 125, 0.35); border-radius: 9999px; }
       ::-webkit-scrollbar-track { background: transparent; }
       iframe { background-color: white; }
     </style>
   </head>
-  <body class="min-h-screen">
-    <div class="mx-auto flex min-h-screen max-w-7xl flex-col gap-10 px-6 py-10">
-      <header class="space-y-4 text-center">
-        <p class="text-sm uppercase tracking-[0.3em] text-emerald-300">Trip Console</p>
-        <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">Plan, compare, and launch your adventures</h1>
-        <p class="mx-auto max-w-2xl text-base text-slate-300 sm:text-lg">
-          Browse automatically discovered itineraries, preview their overviews, and switch between AI-generated activity sets without leaving this page.
-        </p>
-      </header>
-
-      <div class="grid flex-1 gap-6 lg:grid-cols-[320px,1fr]">
-        <aside class="rounded-3xl border border-white/10 bg-white/5 p-4 shadow-[0_10px_40px_rgba(15,23,42,0.45)]">
-          <div class="flex items-center justify-between gap-4 border-b border-white/10 pb-4">
-            <div>
-              <h2 class="text-xl font-semibold text-white">Trips</h2>
-              <p class="text-sm text-slate-400">${trips.length} available</p>
-            </div>
-            <span class="rounded-full bg-emerald-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-emerald-200">Auto</span>
-          </div>
-          <ul class="mt-4 flex max-h-[70vh] flex-col gap-3 overflow-y-auto pr-1" data-trip-list></ul>
-        </aside>
-
-        <section id="interactive-panel" class="hidden rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_20px_45px_rgba(8,47,73,0.55)] backdrop-blur">
-          <div class="flex flex-col gap-8">
-            <div class="space-y-2">
-              <span class="text-xs font-semibold uppercase tracking-[0.4em] text-emerald-300">Preview</span>
-              <h2 data-trip-title class="text-3xl font-semibold text-white sm:text-4xl">Select a trip</h2>
-              <p class="text-sm text-slate-400">Folder: <span data-trip-slug class="font-mono text-slate-200">—</span></p>
-              <div class="mt-4 flex flex-wrap gap-3">
-                <a data-open-overview class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-emerald-400/10 px-4 py-2 text-sm font-medium text-emerald-200 transition hover:border-emerald-300/60 hover:text-white" href="#">Overview page</a>
-                <a data-open-folder class="inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 text-sm font-medium text-slate-200 transition hover:border-emerald-300/60 hover:text-white" href="#">Trip directory</a>
-              </div>
-            </div>
-
-            <div class="space-y-3">
-              <div class="flex items-center justify-between">
-                <h3 class="text-lg font-semibold text-white">Overview snapshot</h3>
-                <span data-overview-status class="text-xs uppercase tracking-wide text-slate-400">Select a trip to load the overview</span>
-              </div>
-              <div class="overflow-hidden rounded-2xl border border-white/10 bg-slate-950/60">
-                <iframe data-overview-frame title="Trip overview" class="h-[520px] w-full rounded-2xl border-0"></iframe>
-              </div>
-            </div>
-
-            <div class="space-y-4">
-              <div class="flex items-center justify-between">
-                <h3 class="text-lg font-semibold text-white">AI suggestions</h3>
-                <span data-ai-status class="text-xs uppercase tracking-wide text-slate-400">Select a trip to preview suggestions</span>
-              </div>
-              <div data-ai-tabs class="flex flex-wrap gap-2"></div>
-              <div class="overflow-hidden rounded-2xl border border-white/10 bg-slate-950/60">
-                <iframe data-ai-frame title="AI suggestion" class="h-[520px] w-full rounded-2xl border-0"></iframe>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="fallback-list" class="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_20px_45px_rgba(8,47,73,0.55)] backdrop-blur">
-          <div class="space-y-3">
-            <h2 class="text-xl font-semibold text-white">Trips</h2>
-            <p class="text-sm text-slate-300">JavaScript is disabled. Use the quick links below to open each trip.</p>
-          </div>
-          <ul class="mt-4 grid gap-4" role="list">
-            ${tripLinks}
-          </ul>
-        </section>
+  <body>
+    <div class="App">
+      <div class="trip-list">
+        <h1>Asyida Trips</h1>
+        <div class="trips-grid">
+          ${tripLinks}
+        </div>
       </div>
-
-      <footer class="flex flex-col items-center gap-2 border-t border-white/10 pt-6 text-center text-xs text-slate-500 sm:flex-row sm:justify-between">
-        <p>Static output generated by <code>npm run build:static</code>.</p>
-        <p class="flex items-center gap-2">Hosted on <span class="font-semibold text-white">Vercel</span></p>
-      </footer>
     </div>
 
     <script id="trip-data" type="application/json">${tripDataJson}</script>
     <script type="module" src="./assets/app.js"></script>
   </body>
 </html>`;
-}
 
 function renderTripHtml(trip: TripData): string {
   const fallbackList =
