@@ -326,66 +326,86 @@ function renderTripHtml(trip: TripData): string {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>${escapeHtml(trip.title)} — Trip Hub</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.15/dist/tailwind.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-      body { background: radial-gradient(circle at top, #020617 0%, #0f172a 45%, #000 100%); color: #e2e8f0; }
-      iframe { background-color: white; }
+      :root {
+        --primary-gradient: linear-gradient(135deg, #e8f4f8 0%, #d1e7dd 100%);
+        --secondary-gradient: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        --accent-gradient: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        --card-bg: rgba(255, 255, 255, 0.98);
+        --text-primary: #212529;
+        --text-secondary: #6c757d;
+        --muted: #adb5bd;
+        --radius: 12px;
+        --shadow: 0 4px 12px rgba(0,0,0,0.08);
+        --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: linear-gradient(135deg,#f8f9fa 0%,#e9ecef 50%,#dee2e6 100%); color: var(--text-primary); }
+      .container { max-width: 1200px; margin: 0 auto; padding: 32px 20px; }
+      header { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px; }
+      header h1 { margin: 0; font-size: 28px; font-weight: 700; }
+      header p { margin: 0; color: var(--text-secondary); font-size: 14px; }
+      .btns { display: flex; gap: 10px; }
+      .btn { display: inline-block; padding: 10px 14px; border-radius: 999px; text-decoration: none; font-weight: 600; background: var(--secondary-gradient); color: #343a40; box-shadow: var(--shadow); }
+      .btn.secondary { background: var(--primary-gradient); color: #212529; }
+      main { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 20px; }
+      @media (min-width: 1024px) { main { grid-template-columns: 1fr 1fr; } }
+      section { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px; }
+      section h2 { margin: 0 0 8px; font-size: 18px; }
+      .status { font-size: 12px; color: var(--muted); }
+      .frame-wrap { margin-top: 12px; border-radius: 10px; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06); overflow: hidden; background: white; }
+      iframe { width: 100%; height: 520px; border: 0; background: white; }
+      .tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+      .ai-tab { cursor: pointer; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.08); background: rgba(0,0,0,0.02); color: var(--text-primary); font-size: 14px; font-weight: 600; transition: all .2s ease; }
+      .ai-tab:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+      .ai-tab--active { background: var(--primary-gradient); border-color: rgba(0,0,0,0.06); color: #212529; }
+      .fallback { margin-top: 12px; border-radius: 10px; padding: 12px; background: rgba(108,117,125,0.08); box-shadow: inset 0 0 0 1px rgba(108,117,125,0.25); }
+      .fallback p { margin: 0 0 6px; font-size: 13px; color: var(--text-secondary); }
     </style>
   </head>
-  <body class="min-h-screen">
-    <div class="mx-auto flex min-h-screen max-w-6xl flex-col gap-10 px-6 py-10">
-      <header class="flex flex-col gap-4 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_20px_45px_rgba(8,47,73,0.55)] backdrop-blur sm:flex-row sm:items-center sm:justify-between">
-        <div class="space-y-2">
-          <p class="text-xs uppercase tracking-[0.4em] text-emerald-300">Trip Hub</p>
-          <h1 class="text-3xl font-semibold text-white sm:text-4xl">${escapeHtml(trip.title)}</h1>
-          <p class="text-sm text-slate-400">Folder: <span class="font-mono text-slate-100/90">${escapeHtml(trip.slug)}</span></p>
+  <body>
+    <div class="container">
+      <header>
+        <div>
+          <h1>${escapeHtml(trip.title)}</h1>
+          <p>Folder: <span>${escapeHtml(trip.slug)}</span></p>
         </div>
-        <div class="flex flex-wrap gap-3">
-          <a class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm font-medium text-slate-100 transition hover:border-emerald-300/60 hover:text-emerald-200" href="../">⟵ Back to trips</a>
-          <a class="inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 text-sm font-medium text-slate-200 transition hover:border-emerald-300/60 hover:text-white" href="./${OVERVIEW_FILENAME}">Open static overview</a>
+        <div class="btns">
+          <a class="btn" href="../">⟵ Back to trips</a>
+          <a class="btn secondary" href="./${OVERVIEW_FILENAME}">Open static overview</a>
         </div>
       </header>
 
-      <main class="grid gap-8 lg:grid-cols-[minmax(0,1fr),minmax(0,1fr)]">
-        <section class="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_20px_45px_rgba(8,47,73,0.55)] backdrop-blur">
-          <div class="flex items-center justify-between">
-            <h2 class="text-xl font-semibold text-white">Trip overview</h2>
-            <span data-overview-status class="text-xs uppercase tracking-wide text-slate-400">Loading enhanced view…</span>
+      <main>
+        <section>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+            <h2>Trip overview</h2>
+            <span data-overview-status class="status">Loading overview…</span>
           </div>
-          <div class="mt-4 overflow-hidden rounded-2xl border border-white/10 bg-slate-950/70">
-            <iframe
-              data-overview-frame
-              src="./${OVERVIEW_FILENAME}"
-              title="Trip overview"
-              class="h-[520px] w-full rounded-2xl border-0"
-            ></iframe>
+          <div class="frame-wrap">
+            <iframe data-overview-frame title="Trip overview" src="./${OVERVIEW_FILENAME}"></iframe>
           </div>
-          <p class="mt-3 text-xs text-slate-500">The overview loads directly from the original <code>index.html</code> content.</p>
+          <p class="status" style="margin-top:8px;">The overview loads directly from the original <code>index.html</code> content.</p>
         </section>
 
-        <section class="flex flex-col gap-4 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_20px_45px_rgba(8,47,73,0.55)] backdrop-blur">
-          <div class="flex flex-col gap-2">
-            <div class="flex items-center justify-between">
-              <h2 class="text-xl font-semibold text-white">AI suggestions</h2>
-              <span data-ai-status class="text-xs uppercase tracking-wide text-slate-400">Choose an AI to preview</span>
-            </div>
-            <p class="text-sm text-slate-400">Switch between generated itineraries without leaving this page.</p>
+        <section>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+            <h2>AI suggestions</h2>
+            <span data-ai-status class="status">Choose an AI to preview</span>
           </div>
-          <div data-ai-tabs class="flex flex-wrap gap-2"></div>
-          <div class="overflow-hidden rounded-2xl border border-white/10 bg-slate-950/70">
-            <iframe data-ai-frame title="AI suggestion" class="h-[520px] w-full rounded-2xl border-0"></iframe>
+          <div data-ai-tabs class="tabs"></div>
+          <div class="frame-wrap">
+            <iframe data-ai-frame title="AI suggestion"></iframe>
           </div>
-          <div data-ai-fallback class="rounded-2xl border border-emerald-400/20 bg-emerald-400/10 p-4 text-slate-200">
-            <p class="text-sm">Need static versions? Use the direct links below:</p>
+          <div data-ai-fallback class="fallback">
+            <p>Need static versions? Use the direct links below:</p>
             ${fallbackList}
           </div>
         </section>
       </main>
-
-      <footer class="flex flex-col items-center gap-2 border-t border-white/10 pt-6 text-center text-xs text-slate-500 sm:flex-row sm:justify-between">
-        <p>Generated as part of the static build.</p>
-        <p>Explore more trips on the main hub.</p>
-      </footer>
     </div>
 
     <script id="trip-data" type="application/json">${tripDataJson}</script>

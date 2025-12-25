@@ -67,13 +67,12 @@ function hydrateAiTabs(elements: TripPageElements, data: TripHydratedData): void
 
   setTabsDisabled(aiTabs, false);
 
-  const activeClassTokens = "bg-emerald-400/20 border-emerald-300 text-white".split(" ");
+  const activeClassTokens = ["ai-tab--active"];
 
   data.aiFiles.forEach((file, index) => {
     const button = document.createElement("button");
     button.type = "button";
-    button.className =
-      "inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm font-medium text-slate-100 transition hover:border-emerald-300/60 hover:text-emerald-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400";
+    button.className = "ai-tab";
     button.dataset.aiFile = file;
     button.textContent = formatAiLabel(file);
 
