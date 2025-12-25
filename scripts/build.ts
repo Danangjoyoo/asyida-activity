@@ -352,7 +352,6 @@ function renderTripHtml(trip: TripData): string {
       .btn { display: inline-block; padding: 10px 14px; border-radius: 999px; text-decoration: none; font-weight: 600; background: var(--secondary-gradient); color: #343a40; box-shadow: var(--shadow); }
       .btn.secondary { background: var(--primary-gradient); color: #212529; }
       main { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 20px; }
-      @media (min-width: 1024px) { main { grid-template-columns: 1fr 1fr; } }
       section { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px; }
       section h2 { margin: 0 0 8px; font-size: 18px; }
       .status { font-size: 12px; color: var(--muted); }
@@ -380,17 +379,6 @@ function renderTripHtml(trip: TripData): string {
       </header>
 
       <main>
-        <section>
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
-            <h2>Trip overview</h2>
-            <span data-overview-status class="status">Loading overview…</span>
-          </div>
-          <div class="frame-wrap">
-            <iframe data-overview-frame title="Trip overview" src="./${OVERVIEW_FILENAME}"></iframe>
-          </div>
-          <p class="status" style="margin-top:8px;">The overview loads directly from the original <code>index.html</code> content.</p>
-        </section>
-
         <section>
           <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
             <h2>AI suggestions</h2>
