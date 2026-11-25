@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#4b315f" />
+<title>Kuala Lumpur Trip · 9–14 Desember 2026</title>
+<style>
+  :root{
+    --ink:#292333;--muted:#746d7d;--plum:#50365f;--plum2:#745b86;--rose:#f2e8ef;
+    --cream:#fbf8f4;--paper:#fff;--line:#e9e2e9;--gold:#b58b54;--sage:#e8efe8;
+    --shadow:0 14px 40px rgba(50,35,60,.08);--radius:22px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:linear-gradient(180deg,#f7f1f5 0,#fbf8f4 440px,#f8f6f3 100%);color:var(--ink);font:15px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+  a{color:inherit}
+  .wrap{width:min(1120px,calc(100% - 36px));margin:auto}
+  .hero{padding:48px 0 34px;position:relative;overflow:hidden}
+  .hero:before,.hero:after{content:"";position:absolute;border-radius:50%;pointer-events:none}
+  .hero:before{width:360px;height:360px;right:-100px;top:-170px;background:radial-gradient(circle,#e7d7e7 0,rgba(231,215,231,0) 70%)}
+  .hero:after{width:300px;height:300px;left:-170px;bottom:-200px;background:radial-gradient(circle,#f0dfcf 0,rgba(240,223,207,0) 70%)}
+  .eyebrow{letter-spacing:.16em;text-transform:uppercase;font-size:11px;font-weight:800;color:var(--plum2)}
+  h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(38px,6vw,66px);line-height:1.04;letter-spacing:-.04em;margin:12px 0;color:#392747;font-weight:600}
+  .subtitle{font-size:17px;color:#6d6473;max-width:680px;margin:16px 0 24px}
+  .hero-meta{display:flex;gap:10px;flex-wrap:wrap}
+  .pill{display:inline-flex;align-items:center;gap:7px;border:1px solid #e6dce7;background:rgba(255,255,255,.72);padding:8px 13px;border-radius:999px;color:#594767;font-size:12px;font-weight:700}
+  .hero-panel{margin-top:30px;background:linear-gradient(120deg,#493257,#72567c);color:white;border-radius:26px;padding:23px 26px;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:20px;box-shadow:0 18px 45px rgba(73,50,87,.2)}
+  .hero-panel small{display:block;color:#d8cadd;font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:700}
+  .hero-panel strong{display:block;font-size:20px;margin-top:5px;font-weight:700}
+  .hero-panel p{margin:5px 0 0;color:#eadfeb;font-size:12px}
+  .nav{position:sticky;top:0;z-index:20;background:rgba(251,248,244,.92);backdrop-filter:blur(14px);border-block:1px solid rgba(225,216,226,.8)}
+  .nav-inner{display:flex;gap:8px;overflow:auto;padding:11px 0;scrollbar-width:none}
+  .nav a{white-space:nowrap;text-decoration:none;padding:8px 13px;border-radius:999px;font-size:12px;font-weight:750;color:#65596d;border:1px solid transparent}
+  .nav a:hover{background:#f0e8f0;border-color:#e6dce7;color:var(--plum)}
+  main{padding:34px 0 70px}
+  .intro{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:22px}
+  .intro h2{font:600 30px/1.15 Georgia,serif;margin:0;color:#3d2d48}
+  .intro p{margin:7px 0 0;color:var(--muted);max-width:650px;font-size:13px}
+  .day{background:var(--paper);border:1px solid #eee8ed;border-radius:var(--radius);box-shadow:var(--shadow);margin:22px 0 30px;overflow:hidden;scroll-margin-top:78px}
+  .day-head{padding:24px 26px 21px;background:linear-gradient(110deg,#f6eef4,#fbf8f4);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:18px;align-items:flex-start}
+  .day-number{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--plum2);font-weight:850}
+  .day-head h3{font:600 clamp(24px,3vw,32px)/1.15 Georgia,serif;margin:6px 0 5px;color:#3c2c47}
+  .day-head p{margin:0;color:#766d7c;font-size:13px}
+  .day-total{background:white;border:1px solid #e9dfe9;border-radius:16px;padding:10px 14px;min-width:130px;text-align:right}
+  .day-total span{display:block;font-size:10px;color:#8a7e8e;text-transform:uppercase;letter-spacing:.1em;font-weight:800}
+  .day-total strong{font-size:21px;color:#50365f;white-space:nowrap}
+  .day-body{padding:22px 26px 25px}
+  .photo-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+  .photo{height:126px;border-radius:14px;background:linear-gradient(135deg,#e9dfe9,#f4e9df);display:flex;align-items:end;padding:12px;color:#594767;font-size:11px;font-weight:800;overflow:hidden;position:relative}
+  .photo:before{content:"";position:absolute;inset:0;background:linear-gradient(145deg,rgba(80,54,95,.03),rgba(80,54,95,.17))}
+  .photo span{position:relative;background:rgba(255,255,255,.82);padding:5px 9px;border-radius:999px}
+  .photo.genting{background:linear-gradient(145deg,#dce9e5,#8ba79d 50%,#e9e0d3)}
+  .photo.mosque{background:linear-gradient(145deg,#d9e5e8,#9eb7bd 48%,#e8e1d8)}
+  .photo.city{background:linear-gradient(145deg,#e8dce8,#c3a9c7 55%,#f0e5d7)}
+  .photo.concert{background:linear-gradient(145deg,#322545,#76548b 55%,#d5a9c8);color:#fff}
+  .photo.cave{background:linear-gradient(145deg,#e9d8bf,#a88b70 55%,#d7c4a8)}
+  .photo.arrival{background:linear-gradient(145deg,#34304c,#796a88 60%,#d6b9ca);color:#fff}
+  .table-wrap{overflow-x:auto;border:1px solid #eee8ee;border-radius:15px}
+  table{width:100%;border-collapse:collapse;min-width:700px;font-size:12.5px}
+  th{background:#f7f3f7;color:#67586e;text-align:left;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:12px 13px;white-space:nowrap}
+  td{padding:11px 13px;border-top:1px solid #f0ebf0;vertical-align:top}
+  tr:nth-child(even) td{background:#fdfbfd}
+  td:first-child{font-weight:750;color:#584466;white-space:nowrap}
+  td:nth-child(3),td:nth-child(4),td:nth-child(5){white-space:nowrap;font-variant-numeric:tabular-nums}
+  .total-row td{background:#f5eff5!important;font-weight:850;color:#493257;border-top:1px solid #e5d9e8}
+  .note{margin-top:14px;padding:13px 15px;border-radius:13px;background:#f8f5f8;color:#6d6271;font-size:12px;border:1px solid #eee7ef}
+  .note strong{color:#4d3b58}
+  .mini-title{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:#846f8c;font-weight:850;margin:22px 0 10px}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .info{border:1px solid #eee7ef;border-radius:15px;padding:15px;background:#fff}
+  .info h4{margin:0 0 6px;font-size:13px;color:#493657}
+  .info p{margin:0;color:#766d7c;font-size:12px}
+  .route{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:14px}
+  .route span{font-size:11px;font-weight:750;padding:7px 10px;border-radius:999px;background:#f2edf3;color:#5a4666}
+  .route b{color:#b49ab8;font-size:12px}
+  .budget{background:linear-gradient(120deg,#493257,#70547b);color:#fff;border-radius:24px;padding:25px 27px;margin:28px 0;box-shadow:0 16px 40px rgba(73,50,87,.16)}
+  .budget h2{font:600 29px Georgia,serif;margin:0 0 5px}
+  .budget>p{color:#e1d5e5;font-size:12px;margin:0 0 20px}
+  .budget-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .budget-item{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:13px}
+  .budget-item small{display:block;color:#dfd1e3;font-size:10px;text-transform:uppercase;letter-spacing:.08em}
+  .budget-item strong{font-size:19px;display:block;margin-top:4px}
+  .budget-total{margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.2);display:flex;justify-content:space-between;align-items:center;gap:16px}
+  .budget-total strong{font:600 34px Georgia,serif}
+  .budget-total span{font-size:11px;color:#e1d5e5;max-width:420px;text-align:right}
+  .checklist{background:white;border:1px solid #eee8ed;border-radius:22px;padding:23px 25px;box-shadow:var(--shadow);margin-top:28px}
+  .checklist h2{font:600 27px Georgia,serif;margin:0 0 5px;color:#3d2d48}
+  .checklist p{font-size:12px;color:var(--muted);margin:0 0 17px}
+  .progress{height:7px;background:#eee8ef;border-radius:99px;overflow:hidden;margin-bottom:15px}
+  .progress div{height:100%;width:0;background:linear-gradient(90deg,#72547f,#b58b9d);transition:width .2s}
+  .checks{display:grid;grid-template-columns:1fr 1fr;gap:10px 20px}
+  .checks label{display:flex;align-items:flex-start;gap:9px;font-size:12px;color:#5f5665;cursor:pointer}
+  .checks input{accent-color:#654b72;margin-top:3px}
+  .checks input:checked+span{text-decoration:line-through;color:#9b929e}
+  footer{text-align:center;padding:20px 0 48px;color:#8a808d;font-size:11px}
+  .smallprint{font-size:11px;color:#8b818e}
+  @media(max-width:700px){.wrap{width:min(100% - 22px,1120px)}.hero{padding-top:34px}.hero-panel{grid-template-columns:1fr 1fr}.hero-panel>div:first-child{grid-column:1/-1}.day-head{padding:20px;display:block}.day-total{margin-top:14px;display:inline-block;text-align:left}.day-body{padding:17px}.photo{height:95px;padding:8px}.photo span{font-size:9px}.split{grid-template-columns:1fr}.budget-grid{grid-template-columns:1fr 1fr}.budget-total{align-items:flex-start;flex-direction:column}.budget-total span{text-align:left}.checks{grid-template-columns:1fr}.intro{display:block}.intro h2{font-size:27px}}
+  @media print{body{background:#fff}.nav{display:none}.day,.checklist{box-shadow:none;break-inside:avoid}.hero{padding-top:20px}.day{break-inside:auto}.table-wrap{overflow:visible}table{min-width:0;font-size:10px}.day-body{padding:14px}.photo-strip{display:none}.budget{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Travel journal · Malaysia</div>
+    <h1>Kuala Lumpur,<br>here we come.</h1>
+    <p class="subtitle">Lima hari menjelajahi Kuala Lumpur — dari Genting Highlands dan masjid yang megah, sampai malam konser BTS. Disusun santai, praktis, dan ramah untuk perjalanan berdua.</p>
+    <div class="hero-meta">
+      <span class="pill">✦ 9–14 Desember 2026</span><span class="pill">♡ 2 orang</span><span class="pill">⌂ Swiss Hotel Kuala Lumpur</span><span class="pill">✈ Pulang 14 Des · 00.20</span>
+    </div>
+    <div class="hero-panel">
+      <div><small>Trip highlight</small><strong>Genting · Mosque · KLCC · BTS · Batu Caves</strong><p>Rute perjalanan dibuat bertahap agar tidak terlalu terburu-buru.</p></div>
+      <div><small>Estimasi biaya berdua</small><strong>RM684–998</strong><p>Di luar hotel, pesawat, tiket konser & belanja.</p></div>
+      <div><small>Budget nyaman</small><strong>RM1.100</strong><p>Termasuk ruang untuk biaya tak terduga.</p></div>
+    </div>
+  </div>
+</header>
+<nav class="nav"><div class="wrap nav-inner">
+  <a href="#day1">Day 1 · Arrival</a><a href="#day2">Day 2 · Genting</a><a href="#day3">Day 3 · Mosque & shopping</a><a href="#day4">Day 4 · BTS</a><a href="#day5">Day 5 · Batu Caves</a><a href="#budget">Budget</a><a href="#checklist">Checklist</a>
+</div></nav>
+<main class="wrap">
+  <div class="intro"><div><h2>Your Kuala Lumpur itinerary</h2><p>Semua biaya di tabel merupakan estimasi untuk dua orang dalam Ringgit Malaysia (RM). Waktu dan tarif transportasi dapat berubah; detail yang perlu dikonfirmasi ditandai di catatan tiap hari.</p></div></div>
+
+  <section class="day" id="day1">
+    <div class="day-head"><div><div class="day-number">Wednesday · 09 December 2026</div><h3>Day 1 — Arrival in Kuala Lumpur</h3><p>Tiba malam, langsung menuju hotel dan istirahat.</p></div><div class="day-total"><span>Total day 1</span><strong>RM90–130</strong></div></div>
+    <div class="day-body"><div class="photo-strip"><div class="photo arrival"><span>KL at night</span></div><div class="photo city"><span>City lights</span></div><div class="photo"><span>Hotel check-in</span></div></div>
+      <div class="table-wrap"><table><thead><tr><th>Waktu</th><th>Aktivitas</th><th>Transport</th><th>Aktivitas</th><th>Food</th></tr></thead><tbody>
+        <tr><td>23.00–00.15</td><td>Tiba di KLIA, imigrasi dan ambil bagasi</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>00.15–01.15</td><td>Grab KLIA → Swiss Hotel</td><td>RM70–100</td><td>—</td><td>—</td></tr>
+        <tr><td>01.15–01.45</td><td>Check-in dan istirahat</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>Setelah check-in</td><td>Makan ringan jika lapar</td><td>—</td><td>—</td><td>RM20–30</td></tr>
+        <tr class="total-row"><td colspan="2">TOTAL</td><td>RM70–100</td><td>RM0</td><td>RM20–30</td></tr>
+      </tbody></table></div>
+      <div class="note"><strong>Catatan:</strong> Karena tiba sekitar pukul 23.00, siapkan cadangan hingga RM120 untuk Grab apabila ada surcharge tengah malam atau permintaan kendaraan sedang tinggi.</div>
+    </div>
+  </section>
+
+  <section class="day" id="day2">
+    <div class="day-head"><div><div class="day-number">Thursday · 10 December 2026</div><h3>Day 2 — Genting Highlands</h3><p>Seharian menikmati cable car, Chin Swee Temple, dan area puncak Genting.</p></div><div class="day-total"><span>Total day 2</span><strong>RM153–184</strong></div></div>
+    <div class="day-body"><div class="photo-strip"><div class="photo genting"><span>Awana SkyWay</span></div><div class="photo"><span>Chin Swee Temple</span></div><div class="photo city"><span>SkyAvenue</span></div></div>
+      <div class="table-wrap"><table><thead><tr><th>Waktu</th><th>Aktivitas</th><th>Transport</th><th>Aktivitas</th><th>Food</th></tr></thead><tbody>
+        <tr><td>07.00–07.30</td><td>Sarapan hotel dan persiapan</td><td>—</td><td>—</td><td>RM0</td></tr>
+        <tr><td>07.30–08.00</td><td>Jalan kaki ke Masjid Jamek LRT</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>08.00–08.30</td><td>LRT Masjid Jamek → KL Sentral</td><td>RM4–8</td><td>—</td><td>—</td></tr>
+        <tr><td>08.30–09.00</td><td>Cari loket dan boarding bus</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>09.00–10.00</td><td>Bus KL Sentral → Awana / Sky Sentral</td><td>RM20</td><td>—</td><td>—</td></tr>
+        <tr><td>10.00–10.30</td><td>Persiapan dan menuju cable car</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>10.30–12.00</td><td>Awana SkyWay → turun di Chin Swee Temple → lanjut ke puncak</td><td>—</td><td>RM38</td><td>—</td></tr>
+        <tr><td>12.00–13.00</td><td>Makan siang di Jom Makan, SkyAvenue</td><td>—</td><td>—</td><td>RM42–50</td></tr>
+        <tr><td>13.00–16.30</td><td>Explore SkyAvenue, First World Plaza, foto-foto dan jalan santai</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>16.30–17.30</td><td>Waktu bebas, snack atau belanja kecil</td><td>—</td><td>—</td><td>Opsional</td></tr>
+        <tr><td>17.30–18.00</td><td>Menuju terminal bus Sky Sentral</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>18.00–19.00</td><td>Bus Genting → KL Sentral</td><td>RM20</td><td>—</td><td>—</td></tr>
+        <tr><td>19.00–19.30</td><td>LRT KL Sentral → Masjid Jamek, jalan ke hotel</td><td>RM4–8</td><td>—</td><td>—</td></tr>
+        <tr><td>19.30–20.30</td><td>Makan malam dekat hotel / istirahat</td><td>—</td><td>—</td><td>RM25–40</td></tr>
+        <tr class="total-row"><td colspan="2">TOTAL</td><td>RM48–56</td><td>RM38</td><td>RM67–90</td></tr>
+      </tbody></table></div>
+      <div class="mini-title">Rute utama</div><div class="route"><span>Swiss Hotel</span><b>→</b><span>Masjid Jamek LRT</span><b>→</b><span>KL Sentral</span><b>→</b><span>Bus Awana</span><b>→</b><span>Chin Swee</span><b>→</b><span>Genting</span></div>
+      <div class="note"><strong>Catatan:</strong> Anggaran transportasi RM48–56 untuk berdua mencakup LRT pulang-pergi, bus Genting pulang-pergi, dan belum memasukkan transportasi lokal tambahan. Jam bus 09.00 dan 18.00 adalah target itinerary, bukan jadwal yang sudah dikonfirmasi. Pastikan tiket Awana SkyWay return dan ketentuan berhenti di Chin Swee.</div>
+    </div>
+  </section>
+
+  <section class="day" id="day3">
+    <div class="day-head"><div><div class="day-number">Friday · 11 December 2026</div><h3>Day 3 — Mosque, Friday Prayer & Shopping</h3><p>Pagi di Federal Territory Mosque, salat Jumat, lalu kuliner dan belanja di pusat kota.</p></div><div class="day-total"><span>Total day 3</span><strong>RM211–322</strong></div></div>
+    <div class="day-body"><div class="photo-strip"><div class="photo mosque"><span>Federal Territory Mosque</span></div><div class="photo city"><span>Pavilion KL</span></div><div class="photo"><span>Kunafa & shopping</span></div></div>
+      <div class="table-wrap"><table><thead><tr><th>Waktu</th><th>Aktivitas</th><th>Transport</th><th>Aktivitas</th><th>Food</th></tr></thead><tbody>
+        <tr><td>08.30–09.00</td><td>Sarapan hotel dan persiapan</td><td>—</td><td>—</td><td>RM0</td></tr>
+        <tr><td>09.00–09.45</td><td>Grab hotel → Federal Territory Mosque</td><td>RM15–25</td><td>—</td><td>—</td></tr>
+        <tr><td>10.00–10.45</td><td>Mosque Tour Programme (berdua)</td><td>—</td><td>RM0</td><td>—</td></tr>
+        <tr><td>10.45–12.00</td><td>Eksplorasi area masjid dan foto-foto</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>12.00–13.10</td><td>Persiapan salat Jumat; kamu bisa beristirahat dan menunggu di area perempuan</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>13.10–14.00</td><td>Suami salat Jumat; kamu salat Zuhur setelah masuk waktu, lalu menunggu</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>14.00–14.30</td><td>Grab masjid → Bukit Bintang</td><td>RM15–25</td><td>—</td><td>—</td></tr>
+        <tr><td>14.30–15.30</td><td>Chee Meng Chicken Rice — makan siang</td><td>—</td><td>—</td><td>RM46–87</td></tr>
+        <tr><td>15.30–17.00</td><td>Pavilion KL: Garrett, Chagee, Hot Crush</td><td>—</td><td>—</td><td>RM60–80</td></tr>
+        <tr><td>17.00–17.45</td><td>Kunafa Crisp</td><td>—</td><td>—</td><td>RM25–35</td></tr>
+        <tr><td>17.45–18.30</td><td>Perjalanan menuju Mydin</td><td>RM10–15</td><td>—</td><td>—</td></tr>
+        <tr><td>18.30–19.45</td><td>Mydin Masjid India — belanja oleh-oleh</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>19.45–20.45</td><td>Zhang LaLa Mee Tarik — makan malam</td><td>—</td><td>—</td><td>RM35–45</td></tr>
+        <tr><td>20.45–21.00</td><td>Kembali ke hotel</td><td>RM5–10</td><td>—</td><td>—</td></tr>
+        <tr class="total-row"><td colspan="2">TOTAL</td><td>RM45–75</td><td>RM0</td><td>RM166–247</td></tr>
+      </tbody></table></div>
+      <div class="split"><div class="info"><h4>Untuk suami</h4><p>Ikut mosque tour, lalu persiapan dan salat Jumat di masjid.</p></div><div class="info"><h4>Untuk kamu</h4><p>Tetap di masjid, gunakan area perempuan, lalu salat Zuhur setelah masuk waktu. Tidak perlu mencari tempat menunggu di luar.</p></div></div>
+      <div class="note"><strong>Catatan:</strong> Jadwal tur Jumat, waktu masuk Zuhur, durasi khutbah dan waktu selesai salat perlu dikonfirmasi mendekati tanggal. Waktu 13.10 adalah perkiraan masuk Zuhur, bukan jaminan salat selesai pukul 14.00. Belanja Mydin belum termasuk anggaran.</div>
+    </div>
+  </section>
+
+  <section class="day" id="day4">
+    <div class="day-head"><div><div class="day-number">Saturday · 12 December 2026</div><h3>Day 4 — KLCC & BTS Concert Night</h3><p>Landmark Kuala Lumpur di pagi hari, lalu malam yang ditunggu-tunggu. 💜</p></div><div class="day-total"><span>Total day 4</span><strong>RM112–198</strong></div></div>
+    <div class="day-body"><div class="photo-strip"><div class="photo city"><span>Petronas Twin Towers</span></div><div class="photo"><span>Bukit Bintang food stops</span></div><div class="photo concert"><span>BTS · ARIRANG</span></div></div>
+      <div class="table-wrap"><table><thead><tr><th>Waktu</th><th>Aktivitas</th><th>Transport</th><th>Aktivitas</th><th>Food</th></tr></thead><tbody>
+        <tr><td>08.30–09.30</td><td>Sarapan hotel dan persiapan</td><td>—</td><td>—</td><td>RM0</td></tr>
+        <tr><td>09.30–10.00</td><td>Hotel → KLCC</td><td>RM8–15</td><td>—</td><td>—</td></tr>
+        <tr><td>10.00–11.30</td><td>Petronas Twin Towers (foto eksterior) + KLCC Park</td><td>—</td><td>RM0</td><td>—</td></tr>
+        <tr><td>11.30–12.30</td><td>KLCC → Bukit Bintang</td><td>RM8–15</td><td>—</td><td>—</td></tr>
+        <tr><td>12.30–13.15</td><td>Mon Chinese Beef Roti — makan ringan</td><td>—</td><td>—</td><td>RM13–21</td></tr>
+        <tr><td>13.15–14.00</td><td>Jalan-jalan sebentar di Bukit Bintang</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>14.00–15.00</td><td>Nasi Kandar Saddam — makan siang</td><td>RM8–15</td><td>—</td><td>RM46–77</td></tr>
+        <tr><td>15.00–16.00</td><td>Menuju Bukit Jalil</td><td>RM8–15</td><td>—</td><td>—</td></tr>
+        <tr><td>16.00–17.00</td><td>Suami mengantar kamu ke stadion, lalu pulang ke hotel</td><td>RM8–15</td><td>—</td><td>—</td></tr>
+        <tr><td>17.00–19.30</td><td>Kamu antre, security check dan persiapan konser</td><td>—</td><td>—</td><td>Opsional</td></tr>
+        <tr><td>19.30–selesai</td><td><strong>BTS WORLD TOUR 'ARIRANG'</strong></td><td>—</td><td>Tiket sudah dibeli</td><td>—</td></tr>
+        <tr><td>Setelah konser</td><td>Kamu pulang sendiri naik LRT ke Masjid Jamek, lalu jalan ke hotel</td><td>RM8–15</td><td>—</td><td>RM5–10</td></tr>
+        <tr class="total-row"><td colspan="2">TOTAL</td><td>RM48–90</td><td>RM0</td><td>RM64–108</td></tr>
+      </tbody></table></div>
+      <div class="split"><div class="info"><h4>Suami</h4><p>Mengantar kamu ke area stadion, lalu kembali ke Swiss Hotel dan beristirahat.</p></div><div class="info"><h4>Kamu</h4><p>Masuk konser sendiri. Setelah acara, ikuti arus penonton ke Bukit Jalil LRT dan pulang ke Masjid Jamek.</p></div></div>
+      <div class="route"><span>Bukit Jalil LRT</span><b>→</b><span>Sri Petaling Line · arah Sentul Timur</span><b>→</b><span>Masjid Jamek</span><b>→</b><span>Swiss Hotel</span></div>
+      <div class="note"><strong>Catatan konser:</strong> Showtime yang direncanakan pukul 19.30. Jam pintu masuk dan jadwal LRT khusus konser harus mengikuti pengumuman resmi. Jangan mengandalkan jam operasi reguler sebelum ada konfirmasi. Jika kereta terlalu malam atau kamu merasa tidak nyaman, hubungi suami untuk penjemputan. Mon Chinese Beef Roti perlu dicek status halal dan bahan-bahannya sebelum membeli. Tiket konser, merchandise, dan snack tambahan di venue belum termasuk.</div>
+    </div>
+  </section>
+
+  <section class="day" id="day5">
+    <div class="day-head"><div><div class="day-number">Sunday · 13 December 2026</div><h3>Day 5 — Batu Caves & Airport Transfer</h3><p>Wisata terakhir, kembali ambil koper, lalu berangkat ke KLIA untuk penerbangan dini hari.</p></div><div class="day-total"><span>Total day 5</span><strong>RM118–164</strong></div></div>
+    <div class="day-body"><div class="photo-strip"><div class="photo cave"><span>Batu Caves</span></div><div class="photo"><span>Rainbow stairs</span></div><div class="photo arrival"><span>Airport transfer</span></div></div>
+      <div class="table-wrap"><table><thead><tr><th>Waktu</th><th>Aktivitas</th><th>Transport</th><th>Aktivitas</th><th>Food</th></tr></thead><tbody>
+        <tr><td>07.45–08.30</td><td>Sarapan, check-out, titip koper di hotel</td><td>—</td><td>—</td><td>RM0</td></tr>
+        <tr><td>08.30–09.00</td><td>Jalan ke Masjid Jamek, LRT → KL Sentral</td><td>RM4–6</td><td>—</td><td>—</td></tr>
+        <tr><td>09.00–09.22</td><td>Persiapan dan menunggu KTM</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>09.22–09.51</td><td>KTM KL Sentral → Batu Caves</td><td>RM10–12</td><td>—</td><td>—</td></tr>
+        <tr><td>10.00–12.00</td><td>Explore Batu Caves, patung Murugan dan Temple Cave</td><td>—</td><td>RM0</td><td>—</td></tr>
+        <tr><td>12.00–12.31</td><td>KTM Batu Caves → KL Sentral</td><td>Termasuk di atas</td><td>—</td><td>—</td></tr>
+        <tr><td>12.31–13.00</td><td>LRT kembali ke hotel</td><td>RM4–6</td><td>—</td><td>—</td></tr>
+        <tr><td>13.00–13.30</td><td>Ambil koper di hotel</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>13.30–14.30</td><td>Makan siang dekat hotel</td><td>—</td><td>—</td><td>RM30–40</td></tr>
+        <tr><td>14.30–18.30</td><td>Istirahat, waktu bebas dan persiapan ke bandara</td><td>—</td><td>—</td><td>Opsional</td></tr>
+        <tr><td>18.30–19.30</td><td>Grab hotel → KLIA</td><td>RM70–100</td><td>—</td><td>—</td></tr>
+        <tr><td>19.30 onwards</td><td>Check-in, imigrasi dan menunggu penerbangan</td><td>—</td><td>—</td><td>Opsional</td></tr>
+        <tr class="total-row"><td colspan="2">TOTAL</td><td>RM88–124</td><td>RM0</td><td>RM30–40</td></tr>
+      </tbody></table></div>
+      <div class="note"><strong>Catatan:</strong> Penerbangan berangkat pukul 00.20 pada 14 Desember. Pastikan terminal Air China sesuai tiket. Konfirmasi apakah hotel mengizinkan penitipan koper setelah check-out. Jadwal KTM akhir pekan dan tarif harus diperiksa ulang menjelang perjalanan.</div>
+    </div>
+  </section>
+
+  <section class="budget" id="budget">
+    <h2>Trip budget at a glance</h2><p>Estimasi total untuk dua orang · 9–13 Desember 2026</p>
+    <div class="budget-grid">
+      <div class="budget-item"><small>Transportasi</small><strong>RM299–445</strong></div>
+      <div class="budget-item"><small>Aktivitas</small><strong>RM38</strong></div>
+      <div class="budget-item"><small>Makanan</small><strong>RM347–515</strong></div>
+      <div class="budget-item"><small>Cadangan nyaman</small><strong>RM1.100</strong></div>
+    </div>
+    <div class="budget-total"><strong>RM684–998</strong><span>Belum termasuk hotel, tiket pesawat, tiket konser, merchandise, belanja oleh-oleh, dan pengeluaran pribadi.</span></div>
+  </section>
+
+  <section class="checklist" id="checklist">
+    <h2>Before you go ✦</h2><p>Checklist persiapan. Centang item yang sudah beres — progres tersimpan selama halaman ini tetap terbuka.</p>
+    <div class="progress"><div id="progressBar"></div></div>
+    <div class="checks" id="checks">
+      <label><input type="checkbox"><span>Konfirmasi luggage storage Swiss Hotel setelah check-out</span></label>
+      <label><input type="checkbox"><span>Pesan bus KL Sentral–Genting pulang-pergi</span></label>
+      <label><input type="checkbox"><span>Konfirmasi tiket Awana SkyWay return</span></label>
+      <label><input type="checkbox"><span>Cek ulang jam mosque tour dan salat Jumat</span></label>
+      <label><input type="checkbox"><span>Cek status halal dan bahan makanan restoran</span></label>
+      <label><input type="checkbox"><span>Cek pengumuman jam LRT khusus konser BTS</span></label>
+      <label><input type="checkbox"><span>Cek jadwal KTM KL Sentral–Batu Caves</span></label>
+      <label><input type="checkbox"><span>Pastikan terminal keberangkatan Air China</span></label>
+      <label><input type="checkbox"><span>Siapkan Touch 'n Go dan saldo transportasi</span></label>
+      <label><input type="checkbox"><span>Simpan alamat hotel dan tiket perjalanan offline</span></label>
+    </div>
+  </section>
+  <footer>Made for your Kuala Lumpur memories · December 2026<br><span class="smallprint">Semua tarif dan jadwal adalah estimasi perencanaan, bukan konfirmasi pemesanan.</span></footer>
+</main>
+<script>
+  const boxes=[...document.querySelectorAll('#checks input')];
+  const bar=document.getElementById('progressBar');
+  function update(){const n=boxes.filter(x=>x.checked).length;bar.style.width=(n/boxes.length*100)+'%';}
+  boxes.forEach(x=>x.addEventListener('change',update));update();
+</script>
+</body>
+</html>
